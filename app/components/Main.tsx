@@ -32,56 +32,74 @@ const Main = () => {
           </p>
           <p>How can I help you?</p>
         </div>
-        <div className="grid grid-cols-4 gap-[15px] p-[20px]">
-          <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
-            <p className="text-[#585858] text-[17px]">
-              Suggest beautiful places to see on an upcoming road trip
-            </p>
-            <Image
-              className="absolute rounded-[20px] bottom-[10px] right-[10px]"
-              height={25}
-              width={25}
-              src="/assets/compass_icon.png"
-              alt="compass icon"
-            />
-          </div>
-          <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
-            <p className="text-[#585858] text-[17px]">
-              Briefly summarize this concept: Photosynthesis
-            </p>
-            <Image
-              className="absolute rounded-[20px] bottom-[10px] right-[10px]"
-              height={25}
-              width={25}
-              src="/assets/bulb_icon.png"
-              alt="bulb icon"
-            />
-          </div>
-          <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
-            <p className="text-[#585858] text-[17px]">
-              Brainstorm team bonding activities for our work retreat
-            </p>
-            <Image
-              className="absolute rounded-[20px] bottom-[10px] right-[10px]"
-              height={30}
-              width={30}
-              src="/assets/message_icon.png"
-              alt="message icon"
-            />
-          </div>
-          <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
-            <p className="text-[#585858] text-[17px]">
-              Improve the readability of the following code
-            </p>
-            <Image
-              className="absolute rounded-[20px] bottom-[10px] right-[10px]"
-              height={30}
-              width={30}
-              src="/assets/code_icon.png"
-              alt="code icon"
-            />
-          </div>
-        </div>
+        {!showResult ? (
+          <>
+            <div className="grid grid-cols-4 gap-[15px] p-[20px]">
+              <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
+                <p className="text-[#585858] text-[17px]">
+                  Suggest beautiful places to see on an upcoming road trip
+                </p>
+                <Image
+                  className="absolute rounded-[20px] bottom-[10px] right-[10px]"
+                  height={25}
+                  width={25}
+                  src="/assets/compass_icon.png"
+                  alt="compass icon"
+                />
+              </div>
+              <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
+                <p className="text-[#585858] text-[17px]">
+                  Briefly summarize this concept: Photosynthesis
+                </p>
+                <Image
+                  className="absolute rounded-[20px] bottom-[10px] right-[10px]"
+                  height={25}
+                  width={25}
+                  src="/assets/bulb_icon.png"
+                  alt="bulb icon"
+                />
+              </div>
+              <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
+                <p className="text-[#585858] text-[17px]">
+                  Brainstorm team bonding activities for our work retreat
+                </p>
+                <Image
+                  className="absolute rounded-[20px] bottom-[10px] right-[10px]"
+                  height={30}
+                  width={30}
+                  src="/assets/message_icon.png"
+                  alt="message icon"
+                />
+              </div>
+              <div className="h-[200px] p-[15px] bg-[#f0f4f9] rounded-[10px] relative cursor-pointer hover:bg-[#dfe4ea]">
+                <p className="text-[#585858] text-[17px]">
+                  Improve the readability of the following code
+                </p>
+                <Image
+                  className="absolute rounded-[20px] bottom-[10px] right-[10px]"
+                  height={30}
+                  width={30}
+                  src="/assets/code_icon.png"
+                  alt="code icon"
+                />
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div>
+              <div>
+                <Image src='/assets/user_icon.png' />
+                <p>{recentPrompt}</p>
+              </div>
+              <div>
+                <Image src='/assets/gemini_icon.png' />
+                <p dangerouslySetInnerHTML={{__html:resultData}}></p>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="absolute bottom-4 w-full max-w-[900px] px-[20px] m-auto">
           <div className="flex items-center justify-between gap-[20px] bg-[#f0f4f9] py-[10px] px-[20px] rounded-[50px]">
             <input

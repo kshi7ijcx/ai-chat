@@ -2,9 +2,9 @@
 import { createContext, useState } from "react";
 import run from "../config/gemini";
 
-export const Context = createContext({});
+export const Context = createContext();
 
-const ContextProvider = (props: any) => {
+const ContextProvider = () => {
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
   const [prevPrompts, setPrevPrompts] = useState([]);
@@ -13,7 +13,14 @@ const ContextProvider = (props: any) => {
   const [resultData, setResultData] = useState("");
 
   const onSent = async () => {
-    await run(input);
+    setResultData("");
+    setLoading(true);
+    setShowResult(true);
+    setRecentPrompt(input);
+    const response = await run(input);
+    setResultData(response);
+    setLoading(false);
+    setInput("");
   };
 
   const contextValue = {
@@ -26,7 +33,7 @@ const ContextProvider = (props: any) => {
     loading,
     resultData,
     input,
-    setInput, 
+    setInput,
   };
 
   return (
