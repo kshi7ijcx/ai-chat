@@ -12,11 +12,9 @@ const ContextProvider = (props: any) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
-  const onSent = async (prompt: string) => {
-    await run(prompt);
+  const onSent = async () => {
+    await run(input);
   };
-
-  onSent("What is react?");
 
   const contextValue = {
     prevPrompts,
