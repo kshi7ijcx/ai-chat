@@ -4,7 +4,7 @@ import run from "../config/gemini";
 
 export const Context = createContext();
 
-const ContextProvider = () => {
+const ContextProvider = ({children}) => {
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
   const [prevPrompts, setPrevPrompts] = useState([]);
@@ -37,7 +37,7 @@ const ContextProvider = () => {
   };
 
   return (
-    <Context.Provider value={contextValue}>{props.children}</Context.Provider>
+    <Context.Provider value={contextValue}>{children}</Context.Provider>
   );
 };
 export default ContextProvider;
