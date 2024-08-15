@@ -113,7 +113,7 @@ const Main = () => {
                   <hr className="rounded-sm border-none bg-[#f6f7f8] bg-gradient-to-r from-[#9ed7ff] via-[#ffffff] to-[#9ed7ff] h-[20px] pulse-loader" />
                 </div>
               ) : (
-                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                <p dangerouslySetInnerHTML={{ __html: resultData }} className="text-[17px] font-light leading-relaxed"></p>
               )}
             </div>
           </div>

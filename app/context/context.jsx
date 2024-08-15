@@ -4,7 +4,7 @@ import run from "../config/gemini";
 
 export const Context = createContext();
 
-const ContextProvider = ({children}) => {
+const ContextProvider = ({ children }) => {
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
   const [prevPrompts, setPrevPrompts] = useState([]);
@@ -12,13 +12,25 @@ const ContextProvider = ({children}) => {
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
+  const delayPara = (index, next) => {};
+
   const onSent = async () => {
     setResultData("");
     setLoading(true);
     setShowResult(true);
     setRecentPrompt(input);
     const response = await run(input);
-    setResultData(response);
+    let responseArrray = response.split("**");
+    let newResponse;
+    for (let i = 0; i < responseArrray.length; i++) {
+      if (i===0 || i % 2 !== 1) {
+        newResponse += responseArrray[i];
+      } else {
+        newResponse += "</br><b>" + responseArrray[i] + "</b>";
+      }
+    }
+    let newResponse2 = newResponse.split("*").join("</br>");
+    setResultData(newResponse2);
     setLoading(false);
     setInput("");
   };
@@ -36,8 +48,6 @@ const ContextProvider = ({children}) => {
     setInput,
   };
 
-  return (
-    <Context.Provider value={contextValue}>{children}</Context.Provider>
-  );
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };
 export default ContextProvider;
